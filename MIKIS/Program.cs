@@ -11,16 +11,16 @@
         // Variables
         string inptc1;
         string cstr1 = "",     cstr2 = "",     cstr3 = "",     cstr4 = "";
+        int    cint1 = 0,      cint2 = 0,      cint3 = 0,      cint4 = 0;
 
         /* 
         TODO:
 
-        int    cint1 = 0,      cint2 = 0,      cint3 = 0,      cint4 = 0;
         bool   cbool1 = false, cbool2 = false, cbool3 = false, cbool4 = false;
         */
 
         // Checks if debug is on, if yes it does stuff
-        if(debug == true)
+        if (debug == true)
         {
             // Write all lines
             System.Console.WriteLine("Contents of " + @"C:\MIKIS\main.mikis");
@@ -62,6 +62,28 @@
                     string st2 = lines[i].Split('"', '"')[1];
                     cstr4 = st2;
                 }
+
+                if (st1 == "cint1")
+                {
+                    string st2 = lines[i].Split('"', '"')[1];
+                    cint1 = Int32.Parse(st2);
+
+                }
+                else if (st1 == "cint2")
+                {
+                    string st2 = lines[i].Split('"', '"')[1];
+                    cint2 = Int32.Parse(st2);
+                }
+                else if (st1 == "cint3")
+                {
+                    string st2 = lines[i].Split('"', '"')[1];
+                    cint3 = Int32.Parse(st2);
+                }
+                else if (st1 == "cint4")
+                {
+                    string st2 = lines[i].Split('"', '"')[1];
+                    cint4 = Int32.Parse(st2);
+                }
             }
             
             // Class Console
@@ -89,6 +111,22 @@
                     else if (lines[i].Contains("Console.Print(cstr4)"))
                     {
                         Console.WriteLine(cstr4);
+                    }
+                    else if (lines[i].Contains("Console.Print(cint1)"))
+                    {
+                        Console.WriteLine(cint1);
+                    }
+                    else if (lines[i].Contains("Console.Print(cint2)"))
+                    {
+                        Console.WriteLine(cint2);
+                    }
+                    else if (lines[i].Contains("Console.Print(cint3)"))
+                    {
+                        Console.WriteLine(cint3);
+                    }
+                    else if (lines[i].Contains("Console.Print(cint4)"))
+                    {
+                        Console.WriteLine(cint4);
                     }
                     else {
                         string st1 = lines[i].Split('"', '"')[1];
