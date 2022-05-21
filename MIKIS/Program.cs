@@ -114,19 +114,19 @@
                     }
                     else if (lines[i].Contains("Console.Print(cint1)"))
                     {
-                        Console.WriteLine(cint1);
+                        Console.WriteLine(cint1.ToString());
                     }
                     else if (lines[i].Contains("Console.Print(cint2)"))
                     {
-                        Console.WriteLine(cint2);
+                        Console.WriteLine(cint2.ToString());
                     }
                     else if (lines[i].Contains("Console.Print(cint3)"))
                     {
-                        Console.WriteLine(cint3);
+                        Console.WriteLine(cint3).ToString();
                     }
                     else if (lines[i].Contains("Console.Print(cint4)"))
                     {
-                        Console.WriteLine(cint4);
+                        Console.WriteLine(cint4.ToString());
                     }
                     else {
                         string st1 = lines[i].Split('"', '"')[1];
@@ -152,3 +152,6 @@
         System.Console.ReadKey();
     }
 }
+
+// Mikicrep#5589 <- Discord
+// Curent Commit fixed int variable(s)
