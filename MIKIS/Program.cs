@@ -10,14 +10,9 @@
 
         // Variables
         string inptc1;
-        string cstr1 = "",     cstr2 = "",     cstr3 = "",     cstr4 = "";
-        int    cint1 = 0,      cint2 = 0,      cint3 = 0,      cint4 = 0;
-
-        /* 
-        TODO:
-
-        bool   cbool1 = false, cbool2 = false, cbool3 = false, cbool4 = false;
-        */
+        Dictionary<string, string> strvars = new();
+        Dictionary<string, int> intvars = new();
+        Dictionary<string, bool> boolvars = new();
 
         // Checks if debug is on, if yes it does stuff
         if (debug == true)
@@ -41,48 +36,27 @@
             if (lines[i].StartsWith("var !"))
             {
                 string st1 = lines[i].Split('!', '!')[1];
+                string st2 = lines[i].Split('"', '"')[1];
+                string st3 = lines[i].Split('.', '.')[1];
 
-                if (st1 == "cstr1")
+                if (st3 == "string")
                 {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cstr1 = st2;
+                    strvars[st1] = st2;
                 }
-                else if (st1 == "cstr2")
+                if (st3 == "int")
                 {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cstr2 = st2;
+                    intvars[st1] = Int32.Parse(st2);
                 }
-                else if (st1 == "cstr3")
+                if (st3 == "bool")
                 {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cstr3 = st2;
-                }
-                else if (st1 == "cstr4")
-                {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cstr4 = st2;
-                }
-
-                if (st1 == "cint1")
-                {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cint1 = Int32.Parse(st2);
-
-                }
-                else if (st1 == "cint2")
-                {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cint2 = Int32.Parse(st2);
-                }
-                else if (st1 == "cint3")
-                {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cint3 = Int32.Parse(st2);
-                }
-                else if (st1 == "cint4")
-                {
-                    string st2 = lines[i].Split('"', '"')[1];
-                    cint4 = Int32.Parse(st2);
+                    if (st2 == "true")
+                    {
+                        boolvars[st1] = true;
+                    }
+                    if (st2 == "false")
+                    {
+                        boolvars[st1] = false;
+                    }
                 }
             }
             
@@ -91,48 +65,38 @@
             {
                 if (lines[i].Contains("Console.Print("))
                 {
-                    if (lines[i].Contains("Console.Print(INPUT);"))
+                    if (lines[i].EndsWith(".VarMode(string);"))
                     {
-                        inptc1 = Console.ReadLine();
-                        Console.WriteLine(inptc1);
-                    }
-                    else if (lines[i].Contains("Console.Print(cstr1)"))
-                    {
-                        Console.WriteLine(cstr1);
-                    }
-                    else if (lines[i].Contains("Console.Print(cstr2)"))
-                    {
-                        Console.WriteLine(cstr2);
-                    }
-                    else if (lines[i].Contains("Console.Print(cstr3)"))
-                    {
-                        Console.WriteLine(cstr3);
-                    }
-                    else if (lines[i].Contains("Console.Print(cstr4)"))
-                    {
-                        Console.WriteLine(cstr4);
-                    }
-                    else if (lines[i].Contains("Console.Print(cint1)"))
-                    {
-                        Console.WriteLine("" + cint1.ToString());
-                    }
-                    else if (lines[i].Contains("Console.Print(cint2)"))
-                    {
-                        Console.WriteLine("" + cint2.ToString());
-                    }
-                    else if (lines[i].Contains("Console.Print(cint3)"))
-                    {
-                        Console.WriteLine("" + cint3.ToString());
-                    }
-                    else if (lines[i].Contains("Console.Print(cint4)"))
-                    {
-                        Console.WriteLine("" + cint4.ToString());
-                    }
-                    else {
                         string st1 = lines[i].Split('"', '"')[1];
-                        Console.WriteLine(st1);
+                        string var_value = strvars[st1];
+                        Console.WriteLine(var_value);
+                    }
+                    else if (lines[i].EndsWith(".VarMode(int);"))
+                    {
+                        string st1 = lines[i].Split('"', '"')[1];
+                        int var_value = intvars[st1];
+                        Console.WriteLine(var_value);
+                    }
+                    else if (lines[i].EndsWith(".VarMode(bool);"))
+                    {
+                        string st1 = lines[i].Split('"', '"')[1];
+                        bool var_value = boolvars[st1];
+                        Console.WriteLine(var_value);
                     }
 
+                    else
+                    {
+                        if (lines[i].Contains("Console.Print(INPUT);"))
+                        {
+                            inptc1 = Console.ReadLine();
+                            Console.WriteLine(inptc1);
+                        }
+                        else
+                        {
+                            string st1 = lines[i].Split('"', '"')[1];
+                            Console.WriteLine(st1);
+                        }
+                    }
                 }
 
                 if (lines[i].Contains("Console.GetInput("))
@@ -154,4 +118,10 @@
 }
 
 // Mikicrep#5589 <- Discord
-// Curent Commit fixed int variable(s) (second try)
+/* 
+Version:
+Dev 4
+
+Curent Commit info:
+1. Added better string, int and bool variables
+*/
