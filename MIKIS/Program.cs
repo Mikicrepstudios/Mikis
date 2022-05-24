@@ -6,7 +6,7 @@
         bool debug = false;
 
         // Reads file from path
-        string[] lines = System.IO.File.ReadAllLines(@"C:\MIKIS\main.mikis");
+        string[] lines = System.IO.File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + @"\main.mikis");
 
         // Variables
         string inptc1;
@@ -120,8 +120,8 @@
 // Mikicrep#5589 <- Discord
 /* 
 Version:
-Dev 4
+Dev 5
 
 Curent Commit info:
-1. Added better string, int and bool variables
+1. Changed file path to current directory main.mikis
 */
